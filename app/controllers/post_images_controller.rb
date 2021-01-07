@@ -7,8 +7,14 @@ class PostImagesController < ApplicationController
   def create
     @post_image = PostImage.new(post_image_params)
     @post_image.user_id = current_user.id
-    @post_image.save
-    redirect_to post_images_path
+    
+    if @post_image.save
+      redirect_to post_images_path
+    else
+      render :new
+      # redirect_to new_post_image_path
+      #上記のredirect_toを用いると、newアクションを通過＝@post_imageを新しく作成してしまい、エラ〜がなかったことになってしまうため、注意
+    end
   end
 
   def index
