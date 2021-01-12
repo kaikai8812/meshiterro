@@ -1,13 +1,2 @@
-<% @post_images.each do |post_image| %>
-<div>
-  <%= link_to post_image_path(post_image.id) do %>
-  <%= attachment_image_tag post_image, :image %>
-  <% end %>
-  <p>投稿ユーザー画像：<%= image_tag('sample-author1.jpg') %></p>
-  <p>ショップ名：<%= post_image.shop_name %></p>
-  <p>説明：<%= post_image.caption %></p>
-  <p>ユーザーネーム：<%= post_image.user.name %></p>
-  <!--post_image変数のuser_idに関連付けられているuserモデルのnameカラムを表示します。直接ユーザーの名前はPOstImageモデルに-->
-  <!--保存されていないので、このようにデータを表示する。-->
-</div>
-<% end %>
+<%= render 'post_images/list', post_images: @post_images%>
+<!--render [部分テンプレートファイルの指定], [ローカル変数]:[渡す値]-->
